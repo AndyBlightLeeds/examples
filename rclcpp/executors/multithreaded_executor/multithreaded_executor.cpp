@@ -1,3 +1,5 @@
+// Copyright 2019 Open Source Robotics Foundation, Inc.
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -31,8 +33,8 @@ std::string string_thread_id()
 }
 
 /* For this example, we will be creating a publishing node like the one in minimal_publisher.
- * We will have a single subscriber node running 2 threads. Each thread loops at different speeds, and
- * just repeats what it sees from the publisher to the screen.
+ * We will have a single subscriber node running 2 threads. Each thread loops at different
+ * speeds, and just repeats what it sees from the publisher to the screen.
  */
 
 class PublisherNode : public rclcpp::Node
@@ -72,7 +74,8 @@ public:
   {
     /* These define the callback groups
      * They don't really do much on their own, but they have to exist in order to
-     * assign callbacks to them. They're also what the executor looks for when trying to run multiple threads
+     * assign callbacks to them. They're also what the executor looks for when trying to run
+     * multiple threads.
      */
     callback_group_subscriber1_ = this->create_callback_group(
       rclcpp::callback_group::CallbackGroupType::MutuallyExclusive);
@@ -115,7 +118,8 @@ public:
 private:
   /**
    * Simple function for generating a timestamp
-   * Used for somewhat ineffectually demonstrating that the multithreading doesn't cripple performace
+   * Used for somewhat ineffectually demonstrating that the multithreading doesn't cripple
+   * performance.
    */
   std::string timing_string()
   {
@@ -125,7 +129,8 @@ private:
 
   /**
    * Every time the Publisher publishes something, all subscribers to the topic get poked
-   * This function gets called when Subscriber1 is poked (due to the std::bind we used when defining it)
+   * This function gets called when Subscriber1 is poked (due to the std::bind we used when
+   * defining it).
    */
   void subscriber1_cb(const std_msgs::msg::String::SharedPtr msg)
   {
@@ -139,7 +144,8 @@ private:
 
   /**
    * This function gets called when Subscriber2 is poked
-   * Since it's running on a separate thread than Subscriber 1, it will run at (more-or-less) the same time!
+   * Since it's running on a separate thread than Subscriber 1, it will run at (more-or-less) the
+   * same time!
    */
   void subscriber2_cb(const std_msgs::msg::String::SharedPtr msg)
   {
