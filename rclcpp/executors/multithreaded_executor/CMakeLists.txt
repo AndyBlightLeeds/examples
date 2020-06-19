@@ -21,4 +21,11 @@ install(TARGETS
   multithreaded_executor
   DESTINATION lib/${PROJECT_NAME}
 )
+
+if(BUILD_TESTING)
+  # Linting
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()  # BUILD_TESTING
+
 ament_package()
